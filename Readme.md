@@ -1,6 +1,6 @@
 # Личный проект «Кексобукинг»
 
-* Студент: `Неизвестно`.
+* Студент: [Даниил Вовас](https://htmlacademy.ru/profile/dvovas).
 * Наставник: [Евгений Вовас](https://up.htmlacademy.ru/htmlcss/26/user/20520).
 
 ---
