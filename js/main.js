@@ -12,12 +12,7 @@ const TYPES = [
   'bungalow',
   'hotel',
 ];
-const CHECKINS = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
-const CHECKOUTS = [
+const CHECK_IN_OUT_TIMES = [
   '12:00',
   '13:00',
   '14:00',
@@ -58,17 +53,14 @@ const getRandomArrayElement = (elements) => elements[
   getRandomNumber(0, elements.length - 1)
 ];
 
-const getRandomAmountElements = (elements) => {
-  const times = getRandomNumber(0, elements.length - 1);
-  const array = [];
-  for (let i = 0; i <= times; i++) {
-    const number = getRandomNumber(0, elements.length - 1);
-    if (array.includes(`${elements[number]} `)) {
-      break;
+const getRandomElements = (array = [], count = 0) => {
+  const randomElements = new Set();
+  if (count && array.length !== 0) {
+    for (let ind = 0; ind < count; ind++) {
+      randomElements.add(getRandomArrayElement(array));
     }
-    array.push(`${elements[number]} `);
   }
-  return array;
+  return Array.from(randomElements);
 };
 
 const getImageLink = (index) => {
@@ -76,29 +68,32 @@ const getImageLink = (index) => {
   return (number > 9) ? `img/avatars/user${number}.png` : `img/avatars/user0${number}.png`;
 };
 
-const createAvatar = (index) => ({
-  avatar: getImageLink(index),
-});
-
-const createObject = (_, index) => ({
-  author: createAvatar(index),
-  offer: {
-    title: getRandomArrayElement(TITLES),
-    address: `${getRandomPureNumber(-90, 90, 5)} ${getRandomPureNumber(-180, 180, 5)}`,
-    price: getRandomNumber(500, 10000),
-    type: getRandomArrayElement(TYPES),
-    rooms: getRandomNumber(1, 8),
-    guests: getRandomNumber(1, 16),
-    checkin: getRandomArrayElement(CHECKINS),
-    checkout: getRandomArrayElement(CHECKOUTS),
-    features: `${getRandomAmountElements(FEATURES_LIST)}`,
-    description: getRandomArrayElement(DESCRIPTION_LIST),
-    photos: `${getRandomAmountElements(PHOTOS_LIST)}`,
-  },
-  location: {
+const createObject = (_, index) => {
+  const location = {
     lat: getRandomPureNumber(35.65000, 35.70000, 5),
     lng: getRandomPureNumber(139.70000, 139.80000, 5),
-  },
-});
+  };
+  return {
+    author: {
+      avatar: getImageLink(index),
+    },
+    offer: {
+      title: getRandomArrayElement(TITLES),
+      address: `${location.lat},${location.lng}`,
+      price: getRandomNumber(500, 10000),
+      type: getRandomArrayElement(TYPES),
+      rooms: getRandomNumber(1, 8),
+      guests: getRandomNumber(1, 16),
+      checkin: getRandomArrayElement(CHECK_IN_OUT_TIMES),
+      checkout: getRandomArrayElement(CHECK_IN_OUT_TIMES),
+      features: getRandomElements(FEATURES_LIST,
+        getRandomNumber(1, FEATURES_LIST.length)),
+      description: getRandomArrayElement(DESCRIPTION_LIST),
+      photos: getRandomElements(PHOTOS_LIST,
+        getRandomNumber(1, PHOTOS_LIST.length)),
+    },
+    location,
+  };
+};
 const resultArray = Array.from({ length: 10 }, createObject);
 console.log(resultArray);
