@@ -20,5 +20,9 @@ const getRandomElements = (array = [], count = 0) => {
   }
   return Array.from(randomElements);
 };
-export { getRandomNumber, getRandomPureNumber,
-  getRandomArrayElement, getRandomElements };
+export {
+  getRandomNumber,
+  getRandomPureNumber,
+  getRandomArrayElement,
+  getRandomElements,
+};

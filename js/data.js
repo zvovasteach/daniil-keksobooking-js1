@@ -72,5 +72,5 @@ const createObject = (_, index) => {
     location,
   };
 };
-const resultArray = () => Array.from({ length: 10 }, createObject);
-export { resultArray };
+const getMockData = () => Array.from({ length: 10 }, createObject);
+export { getMockData };

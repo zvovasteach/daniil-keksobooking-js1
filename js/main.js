@@ -1,3 +1,3 @@
 import './util.js';
-import { resultArray } from './data.js';
-console.log(resultArray());
+import { getMockData } from './data.js';
+console.log(getMockData());
