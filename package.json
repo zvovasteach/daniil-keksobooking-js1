@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "keksobooking",
   "version": "25.0.0",
   "private": true,
