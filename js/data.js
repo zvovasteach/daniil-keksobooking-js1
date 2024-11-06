@@ -1,30 +1,12 @@
 import { getRandomNumber, getRandomPureNumber, getRandomArrayElement, getRandomElements } from './util.js';
+import { TYPES, CHECK_IN_OUT_TIMES, FEATURES_LIST } from './constants.js';
+
 const TITLES = [
   'АирБНБ-Квартира',
   'Хата 10 на 10',
   'Студия на Замоскворечной',
   'Подьезд в Хамовниках',
   'Обычная квартира',
-];
-const TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalow',
-  'hotel',
-];
-const CHECK_IN_OUT_TIMES = [
-  '12:00',
-  '13:00',
-  '14:00',
-];
-const FEATURES_LIST = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner',
 ];
 const DESCRIPTION_LIST = [
   'Пожалуйста не сьезжайте',
@@ -57,17 +39,17 @@ const createObject = (_, index) => {
     offer: {
       title: getRandomArrayElement(TITLES),
       address: `${location.lat},${location.lng}`,
-      price: getRandomNumber(500, 10000),
+      price: getRandomNumber(0, 100000),
       type: getRandomArrayElement(TYPES),
       rooms: getRandomNumber(1, 8),
       guests: getRandomNumber(1, 16),
       checkin: getRandomArrayElement(CHECK_IN_OUT_TIMES),
       checkout: getRandomArrayElement(CHECK_IN_OUT_TIMES),
       features: getRandomElements(FEATURES_LIST,
-        getRandomNumber(1, FEATURES_LIST.length)),
+        getRandomNumber(0, FEATURES_LIST.length)),
       description: getRandomArrayElement(DESCRIPTION_LIST),
       photos: getRandomElements(PHOTOS_LIST,
-        getRandomNumber(1, PHOTOS_LIST.length)),
+        getRandomNumber(0, PHOTOS_LIST.length)),
     },
     location,
   };
