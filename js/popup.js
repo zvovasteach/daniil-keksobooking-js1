@@ -10,9 +10,8 @@ const getTypeOfHome = (item) => {
 };
 
 const createCard = (value) => {
-
   const cardClone = cardTemplate.cloneNode(true);
-  const [author, offer] = [value.author, value.offer];
+  const { author, offer } = value;
 
   const title = cardClone.querySelector('.popup__title');
   if (offer?.title) {
@@ -29,8 +28,11 @@ const createCard = (value) => {
   }
 
   const price = cardClone.querySelector('.popup__text--price');
-  if (offer.price !== 0 && offer?.price) {
-    price.textContent = `${offer.price} ₽/ночь`;
+  if (offer?.price) {
+    price.textContent = `${offer.price}`;
+    const priceTextElement = document.createElement('span');
+    price.appendChild(priceTextElement);
+    priceTextElement.textContent = ' ₽/ночь';
   } else {
     price.textContent = 'Бесплатно';
   }
@@ -97,7 +99,6 @@ const createCard = (value) => {
   } else {
     avatar.remove();
   }
-
   return cardClone;
 };
 export { createCard };
