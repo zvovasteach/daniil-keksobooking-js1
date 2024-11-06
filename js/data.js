@@ -56,3 +56,4 @@ const createObject = (_, index) => {
 };
 const getMockData = () => Array.from({ length: 10 }, createObject);
 export { getMockData };
+export { createObject };

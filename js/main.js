@@ -1,4 +1,9 @@
 import './util.js';
 import './popup.js';
+import './constants.js';
 import { getMockData } from './data.js';
-console.log(getMockData());
+import { getRandomArrayElement } from './util.js';
+const randomObject = getRandomArrayElement(getMockData());
+import { createCard } from './popup.js';
+const mapCanvas = document.querySelector('#map-canvas');
+mapCanvas.appendChild(createCard(randomObject));
