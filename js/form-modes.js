@@ -29,5 +29,5 @@ export const enableForm = () => {
   mapFilters.forEach((filter) => {
     filter.removeAttribute('disabled');
   });
-  mapForm.querySelector('.map__features').removeAttribute('disabled', '');
+  mapForm.querySelector('.map__features').removeAttribute('disabled');
 };
