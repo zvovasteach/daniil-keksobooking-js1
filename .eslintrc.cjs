@@ -49,7 +49,12 @@ module.exports = {
       },
     ],
     'comma-dangle': ['error', 'always-multiline'],
-    'no-console': 0,
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
     'no-alert': 0,
     'check-file/folder-naming-convention': 0,
     'check-file/filename-naming-convention': 0,
@@ -61,7 +66,7 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    'no-unused-vars': ['error', { 'varsIgnorePattern': '_.*' }],
+    'no-unused-vars': ['error', { varsIgnorePattern: '_.*' }],
     'space-before-function-paren': ['error', {
       anonymous: 'always',
       named: 'never',
