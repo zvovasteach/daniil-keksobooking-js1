@@ -14,7 +14,7 @@ const getRandomArrayElement = (elements) => elements[
 const getRandomElements = (array = [], count = 0) => {
   const randomElements = new Set();
   if (count && array.length !== 0) {
-    for (let ind = 0; ind < count; ind++) {
+    for (let ind = 0; ind <= count; ind++) {
       randomElements.add(getRandomArrayElement(array));
     }
   }
