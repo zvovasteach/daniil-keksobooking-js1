@@ -7,10 +7,7 @@ const pristine = new Pristine(adForm, {
 });
 const validateTitle = (value) => value.length >= 30 && value.length <= 100;
 
-const validateNumber = (value) => value <= 100000;
-
 pristine.addValidator(adForm.querySelector('#title'), validateTitle);
-pristine.addValidator(adForm.querySelector('#price'), validateNumber);
 
 const capacity = adForm.querySelector('#capacity');
 const room = adForm.querySelector('#room_number');
@@ -42,5 +39,56 @@ adForm.addEventListener('submit', (evt) => {
     console.log('Можно отправлять');
   } else {
     console.log('Форма невалидна');
+  }
+});
+
+const type = adForm.querySelector('#type');
+const price = adForm.querySelector('#price');
+type.addEventListener('change', () => {
+  if (type.value === 'bungalow') {
+    price.setAttribute('min', '0');
+    price.setAttribute('placeholder', '0');
+  }
+  if (type.value === 'flat') {
+    price.setAttribute('min', '1000');
+    price.setAttribute('placeholder', '1000');
+  }
+  if (type.value === 'hotel') {
+    price.setAttribute('min', '3000');
+    price.setAttribute('placeholder', '3000');
+  }
+  if (type.value === 'house') {
+    price.setAttribute('min', '5000');
+    price.setAttribute('placeholder', '5000');
+  }
+  if (type.value === 'palace') {
+    price.setAttribute('min', '10000');
+    price.setAttribute('placeholder', '10000');
+  }
+});
+
+const validateNumber = (value) => {
+  const min = price.getAttribute('min');
+  if (Number(value) <= 100000 && Number(value) >= Number(min)) {
+    return true;
+  }
+};
+const getErrorNumberMessage = () => {
+  if (price.value < 100000) {
+    return `Цена не может быть ниже ${price.getAttribute('min')}`;
+  }
+};
+
+pristine.addValidator(adForm.querySelector('#price'), validateNumber, getErrorNumberMessage);
+
+const adFormTime = adForm.querySelector('.ad-form__element--time');
+const timein = adForm.querySelector('#timein');
+const timeout = adForm.querySelector('#timeout');
+adFormTime.addEventListener('change', (evt) => {
+  if (evt.target.matches('#timein')) {
+    timeout.value = timein.value;
+  }
+  if (evt.target.matches('#timeout')) {
+    timein.value = timeout.value;
   }
 });
