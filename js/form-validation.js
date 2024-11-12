@@ -22,10 +22,10 @@ const CAPACITY_VALUES = {
   1: '1',
   0: '0',
 };
-const TYPE_ERROR_MESSAGES = {
+const ERROR_MESSAGES = {
   ROOMS: 'Количество комнат не может быть меньше количества гостей',
   CAPACITY: 'Количество гостей не может быть больше количества комнат',
-  100: '100 комнат предназначены не для гостей',
+  NO_GUESTS_100: '100 комнат предназначены не для гостей',
   NO_GUESTS: 'Не для гостей - предназначены для 100 комнат',
 };
 
@@ -46,16 +46,16 @@ const capacity = adForm.querySelector('#capacity');
 const room = adForm.querySelector('#room_number');
 
 pristine.addValidator(room, (value) => Number(value) >= Number(capacity.value)
-&& Number(capacity.value) >= CAPACITY_VALUES[0], TYPE_ERROR_MESSAGES.ROOMS);
+&& Number(capacity.value) >= CAPACITY_VALUES[0], ERROR_MESSAGES.ROOMS);
 
 pristine.addValidator(room, (value) => !(value === ROOMS_VALUES[100]
-&& capacity.value !== CAPACITY_VALUES[0]), TYPE_ERROR_MESSAGES[100]);
+&& capacity.value !== CAPACITY_VALUES[0]), ERROR_MESSAGES.NO_GUESTS_100);
 
 pristine.addValidator(capacity, (value) => Number(value) <= Number(room.value)
-|| Number(value) === Number(CAPACITY_VALUES[0]), TYPE_ERROR_MESSAGES.CAPACITY);
+|| Number(value) === Number(CAPACITY_VALUES[0]), ERROR_MESSAGES.CAPACITY);
 
 pristine.addValidator(capacity, (value) => !(value === CAPACITY_VALUES[0]
-&& room.value !== ROOMS_VALUES[100]), TYPE_ERROR_MESSAGES.NO_GUESTS);
+&& room.value !== ROOMS_VALUES[100]), ERROR_MESSAGES.NO_GUESTS);
 
 room.addEventListener('change', () => {
   pristine.validate(capacity);
@@ -66,6 +66,7 @@ capacity.addEventListener('change', () => {
 
 const type = adForm.querySelector('#type');
 const price = adForm.querySelector('#price');
+price.setAttribute('min', MIN_PRICES.HOUSE);
 type.addEventListener('change', () => {
   if (type.value === 'bungalow') {
     price.setAttribute('min', MIN_PRICES.BUNGALOW);
