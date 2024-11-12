@@ -66,7 +66,7 @@ capacity.addEventListener('change', () => {
 
 const type = adForm.querySelector('#type');
 const price = adForm.querySelector('#price');
-price.setAttribute('min', MIN_PRICES.HOUSE);
+price.setAttribute('min', MIN_PRICES.FLAT);
 type.addEventListener('change', () => {
   if (type.value === 'bungalow') {
     price.setAttribute('min', MIN_PRICES.BUNGALOW);
