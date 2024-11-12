@@ -13,6 +13,12 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  globals: {
+    _: 'readonly',
+    L: 'readonly',
+    noUiSlider: 'readonly',
+    Pristine: 'readonly',
+  },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
