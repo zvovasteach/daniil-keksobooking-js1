@@ -3,14 +3,14 @@ import './popup.js';
 import './constants.js';
 import './form-modes.js';
 import './form-validation.js';
-import { getMockData } from './data.js';
-import { getRandomArrayElement } from './util.js';
-import { createCard } from './popup.js';
-import { disableForm } from './form-modes.js';
-import { enableForm } from './form-modes.js';
-
-const randomObject = getRandomArrayElement(getMockData());
-const mapCanvas = document.querySelector('#map-canvas');
-mapCanvas.appendChild(createCard(randomObject));
-disableForm();
-enableForm();
+import './map.js';
+import { mainMarker } from './map.js';
+const address = document.querySelector('#address');
+address.value = 'lat: 35.68, lng: 139.75';
+address.setAttribute('readonly', '');
+mainMarker.on('moveend', (evt) => {
+  const coords = evt.target.getLatLng();
+  const lat = coords.lat.toFixed(5);
+  const lng = coords.lng.toFixed(5);
+  address.value = `lat: ${lat}, lng: ${lng}`;
+});
