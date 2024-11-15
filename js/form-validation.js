@@ -31,7 +31,7 @@ const ERROR_MESSAGES = {
 
 const adForm = document.querySelector('.ad-form');
 
-const pristine = new Pristine(adForm, {
+export const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
   errorTextClass: 'ad-form__element--error',
@@ -122,25 +122,5 @@ adForm.addEventListener('submit', (evt) => {
     console.log('Форма невалидна');
   }
 });
-
-const slider = document.querySelector('.ad-form__slider');
-noUiSlider.create(slider, {
-  start: [0],
-  step: 10,
-  connect: 'lower',
-  range: {
-    min: 0,
-    max: 100000,
-  },
-});
-slider.noUiSlider.on('update', (handle) => {
-  let value = Number(slider.noUiSlider.get());
-  if (handle) {
-    value = Number(handle);
-  }
-  price.value = value.toFixed(0);
-  pristine.validate(price);
-});
-price.addEventListener('change', () => {
-  slider.noUiSlider.set([price.value]);
-});
+export const sliderValidate = () => pristine.validate(price);
+export const resetValidation = () => pristine.reset();

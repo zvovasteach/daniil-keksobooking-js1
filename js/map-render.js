@@ -1,15 +1,16 @@
 import { enableForm } from './form-modes.js';
 import { disableForm } from './form-modes.js';
-import { getMockData } from './data.js';
 import { createCard } from './popup.js';
 disableForm();
+import { TOKYO_CENTER_COORDS } from './constants.js';
+
 export const map = L.map('map-canvas')
   .on('load', () => {
     enableForm();
   })
   .setView({
-    lat: 35.68,
-    lng: 139.75,
+    lat: TOKYO_CENTER_COORDS.LAT,
+    lng: TOKYO_CENTER_COORDS.LNG,
   }, 13);
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -22,10 +23,10 @@ const mainPinIcon = L.icon({
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
-const mainMarker = L.marker(
+export const mainMarker = L.marker(
   {
-    lat: 35.68,
-    lng: 139.75,
+    lat: TOKYO_CENTER_COORDS.LAT,
+    lng: TOKYO_CENTER_COORDS.LNG,
   },
   {
     icon: mainPinIcon,
@@ -38,21 +39,22 @@ const pinIcon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
-const offers = getMockData();
-offers.forEach((value) => {
-  const lat = value.location.lat;
-  const lng = value.location.lng;
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      icon: pinIcon,
-    },
-  );
-  marker
-    .addTo(map)
-    .bindPopup(createCard(value));
-});
-export { mainMarker };
+
+export const createPins = (data) => {
+  data.forEach((value) => {
+    const lat = value.location.lat;
+    const lng = value.location.lng;
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        icon: pinIcon,
+      },
+    );
+    marker
+      .addTo(map)
+      .bindPopup(createCard(value));
+  });
+};
