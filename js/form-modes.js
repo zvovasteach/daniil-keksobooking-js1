@@ -31,3 +31,5 @@ export const enableForm = () => {
   });
   mapForm.querySelector('.map__features').removeAttribute('disabled');
 };
+
+disableForm();

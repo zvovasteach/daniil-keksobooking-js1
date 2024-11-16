@@ -1,7 +1,5 @@
 import { enableForm } from './form-modes.js';
-import { disableForm } from './form-modes.js';
 import { createCard } from './popup.js';
-disableForm();
 import { TOKYO_CENTER_COORDS } from './constants.js';
 
 export const map = L.map('map-canvas')
