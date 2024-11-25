@@ -18,3 +18,8 @@ export const FEATURES_LIST = [
   'elevator',
   'conditioner',
 ];
+export const TOKYO_CENTER_COORDS = {
+  LAT: 35.68032,
+  LNG: 139.75164,
+};
+export const DEFAULT_MAP_ZOOM_VALUE = 13;
