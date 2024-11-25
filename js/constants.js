@@ -22,3 +22,4 @@ export const TOKYO_CENTER_COORDS = {
   LAT: 35.68032,
   LNG: 139.75164,
 };
+export const TOKYO_MAP_ZOOM_VALUE = 13;

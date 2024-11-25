@@ -25,6 +25,7 @@ export const mainMarker = L.marker(
   {
     lat: TOKYO_CENTER_COORDS.LAT,
     lng: TOKYO_CENTER_COORDS.LNG,
+
   },
   {
     icon: mainPinIcon,
