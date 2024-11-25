@@ -1,6 +1,6 @@
 import { mainMarker } from './map-render.js';
 import { sliderValidate } from './form-validation.js';
-import { TOKYO_CENTER_COORDS, TOKYO_MAP_ZOOM_VALUE } from './constants.js';
+import { TOKYO_CENTER_COORDS, DEFAULT_MAP_ZOOM_VALUE } from './constants.js';
 import { map } from './map-render.js';
 import { resetValidation } from './form-validation.js';
 const SLIDER_MAX_VALUE = 100000;
@@ -23,7 +23,7 @@ noUiSlider.create(slider, {
   connect: 'lower',
   range: {
     min: 0,
-    max: 100000,
+    max: SLIDER_MAX_VALUE,
   },
 });
 
@@ -57,6 +57,6 @@ resetFormButton.addEventListener('click', () => {
   map.setView({
     lat: TOKYO_CENTER_COORDS.LAT,
     lng: TOKYO_CENTER_COORDS.LNG,
-  }, TOKYO_MAP_ZOOM_VALUE);
+  }, DEFAULT_MAP_ZOOM_VALUE);
   resetValidation();
 });
