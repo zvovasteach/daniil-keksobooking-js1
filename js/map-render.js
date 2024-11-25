@@ -1,6 +1,6 @@
 import { enableForm } from './form-modes.js';
 import { createCard } from './popup.js';
-import { TOKYO_CENTER_COORDS } from './constants.js';
+import { DEFAULT_MAP_ZOOM_VALUE, TOKYO_CENTER_COORDS } from './constants.js';
 
 export const map = L.map('map-canvas')
   .on('load', () => {
@@ -9,7 +9,7 @@ export const map = L.map('map-canvas')
   .setView({
     lat: TOKYO_CENTER_COORDS.LAT,
     lng: TOKYO_CENTER_COORDS.LNG,
-  }, 13);
+  }, DEFAULT_MAP_ZOOM_VALUE);
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
