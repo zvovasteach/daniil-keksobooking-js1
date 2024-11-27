@@ -1,4 +1,5 @@
-import { getMockData } from './data.js';
 import { createPins } from './map-render.js';
-const offers = getMockData();
-createPins(offers);
+import { getData } from './api.js';
+getData((data) => {
+  createPins(data);
+});
