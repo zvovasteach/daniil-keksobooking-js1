@@ -11,7 +11,7 @@ export const getData = (onSuccess) => {
       onSuccess(data);
     })
     .catch(() => {
-      showAllert('Произошла ошибка при загрузки данных с сервера');
+      showAllert('Произошла ошибка при загрузке данных с сервера');
     });
 };
 

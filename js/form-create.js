@@ -71,7 +71,7 @@ const successInfoBlock = document.querySelector('#success').content.querySelecto
 const showFormSuccessInfo = () => {
   document.body.append(successInfoBlock);
 };
-const removeSuccessForm = () => {
+const removeFormSuccessInfo = () => {
   document.body.removeChild(successInfoBlock);
   if (successInfoBlock !== null) {
     onSuccessEscDown();
@@ -81,18 +81,18 @@ const removeSuccessForm = () => {
 
 // eslint-disable-next-line func-style,prefer-arrow/prefer-arrow-functions
 function onSuccessClick() {
-  document.removeEventListener('click', removeSuccessForm);
+  document.removeEventListener('click', removeFormSuccessInfo);
 }
 
 // eslint-disable-next-line func-style,prefer-arrow/prefer-arrow-functions
 function onSuccessEscDown() {
-  document.removeEventListener('keydown', removeSuccessForm);
+  document.removeEventListener('keydown', removeFormSuccessInfo);
 }
 const handleSuccess = () => {
   formReset();
   showFormSuccessInfo();
-  document.addEventListener('keydown', removeSuccessForm);
-  document.addEventListener('click', removeSuccessForm);
+  document.addEventListener('keydown', removeFormSuccessInfo);
+  document.addEventListener('click', removeFormSuccessInfo);
 };
 
 const errorInfoBlock = document.querySelector('#error').content.querySelector('.error');
@@ -100,7 +100,7 @@ const showFormErrorInfo = () => {
   document.body.append(errorInfoBlock);
 };
 const errorFormButton = document.querySelector('.error-button');
-const removeErrorForm = () => {
+const removeFormErrorInfo = () => {
   document.body.removeChild(errorInfoBlock);
   if (errorInfoBlock !== null) {
     onErrorEscDown();
@@ -110,22 +110,22 @@ const removeErrorForm = () => {
 
 // eslint-disable-next-line func-style,prefer-arrow/prefer-arrow-functions
 function onErrorEscDown() {
-  document.removeEventListener('keydown', removeErrorForm);
+  document.removeEventListener('keydown', removeFormErrorInfo);
 }
 
 // eslint-disable-next-line func-style,prefer-arrow/prefer-arrow-functions
 function onErrorClick() {
-  document.removeEventListener('click', removeErrorForm);
+  document.removeEventListener('click', removeFormErrorInfo);
 }
 const onErrorButtonClick = () => {
   if (errorFormButton !== null) {
-    errorFormButton.addEventListener('click', removeErrorForm);
+    errorFormButton.addEventListener('click', removeFormErrorInfo);
   }
 };
 const handleError = () => {
   showFormErrorInfo();
-  document.addEventListener('keydown', removeErrorForm);
-  document.addEventListener('click', removeErrorForm);
+  document.addEventListener('keydown', removeFormErrorInfo);
+  document.addEventListener('click', removeFormErrorInfo);
   onErrorButtonClick();
 };
 
@@ -138,24 +138,22 @@ const enableSubmitButton = () => {
   submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
 };
-const userFormSubmit = () => {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const isValid = pristine.validate();
-    if (isValid) {
-      disableSubmitButton();
-      sendData(
-        () => {
-          handleSuccess();
-          enableSubmitButton();
-        },
-        () => {
-          handleError();
-          enableSubmitButton();
-        },
-        new FormData(evt.target),
-      );
-    }
-  });
-};
-userFormSubmit();
+
+adForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const isValid = pristine.validate();
+  if (isValid) {
+    disableSubmitButton();
+    sendData(
+      () => {
+        handleSuccess();
+        enableSubmitButton();
+      },
+      () => {
+        handleError();
+        enableSubmitButton();
+      },
+      new FormData(evt.target),
+    );
+  }
+});
