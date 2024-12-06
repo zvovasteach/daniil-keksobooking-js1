@@ -4,6 +4,7 @@ import { TOKYO_CENTER_COORDS, DEFAULT_MAP_ZOOM_VALUE } from './constants.js';
 import { map } from './map-render.js';
 import { resetValidation } from './form-validation.js';
 import { sendData } from './api.js';
+import { resetMapFilters } from './map-filter.js';
 
 const SLIDER_MAX_VALUE = 100000;
 const address = document.querySelector('#address');
@@ -63,6 +64,8 @@ export const formReset = () => {
     lat: TOKYO_CENTER_COORDS.LAT,
     lng: TOKYO_CENTER_COORDS.LNG,
   }, DEFAULT_MAP_ZOOM_VALUE);
+  map.closePopup();
+  resetMapFilters();
   resetValidation();
 };
 resetFormButton.addEventListener('click', formReset);

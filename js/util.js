@@ -40,10 +40,20 @@ const showAllert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
+
+const debounce = function (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 export {
   getRandomNumber,
   getRandomPureNumber,
   getRandomArrayElement,
   getRandomElements,
   showAllert,
+  debounce,
 };

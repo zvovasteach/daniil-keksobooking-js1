@@ -38,22 +38,25 @@ const pinIcon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
-
-export const createPins = (data) => {
-  data.forEach((value) => {
-    const lat = value.location.lat;
-    const lng = value.location.lng;
-    const marker = L.marker(
-      {
-        lat,
-        lng,
-      },
-      {
-        icon: pinIcon,
-      },
-    );
-    marker
-      .addTo(map)
-      .bindPopup(createCard(value));
-  });
+const markerLayer = L.layerGroup();
+export const createPins = (filteredData) => {
+  markerLayer.clearLayers();
+  filteredData
+    .forEach((value) => {
+      const lat = value.location.lat;
+      const lng = value.location.lng;
+      const marker = L.marker(
+        {
+          lat,
+          lng,
+        },
+        {
+          icon: pinIcon,
+        },
+      );
+      marker
+        .addTo(markerLayer)
+        .bindPopup(createCard(value));
+    });
+  markerLayer.addTo(map);
 };
