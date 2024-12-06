@@ -112,5 +112,9 @@ adFormTime.addEventListener('change', (evt) => {
     timein.value = timeout.value;
   }
 });
-export const sliderValidate = () => pristine.validate(price);
-export const resetValidation = () => pristine.reset();
+export const sliderValidate = () => {
+  pristine.validate(price);
+};
+export const resetValidation = () => {
+  pristine.reset();
+};
